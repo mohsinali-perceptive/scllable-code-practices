@@ -15,11 +15,16 @@ data = {
 
 from connector_type import TallyConnector, ZohoConnector
 
-tally = TallyConnector(payload=data, port = 9000, host = 'localhost')
+has_tally = False
 
-zoho = ZohoConnector(payload=data, api_key="a9012")
+if has_tally:
+    accounting = TallyConnector(payload=data, port = 9000, host = 'localhost')
 
-tally.push()
+else:
+    accounting =  ZohoConnector(payload=data, api_key="a9012")
+
+
+accounting.push()
 
 # zoho.push()
 
