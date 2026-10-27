@@ -13,15 +13,19 @@ data = {
     ]
 }
 
-from connector_type import TallyConnector, ZohoConnector
+from connector_type import TallyConnector, ZohoConnector, OddoConnector
 
-has_tally = False
+connector = "oddo"
 
-if has_tally:
-    accounting = TallyConnector(payload=data, port = 9000, host = 'localhost')
-
-else:
-    accounting =  ZohoConnector(payload=data, api_key="a9012")
+match connector:
+    case "oddo":
+        accounting = OddoConnector(payload=data, api_key="oddu_121", token=2763)
+    case "tally":
+        accounting = TallyConnector(payload=data, port = 9000, host = 'localhost')
+    case "zoho":
+        accounting =  ZohoConnector(payload=data, api_key="a9012")
+    case _:
+        accounting = TallyConnector(payload=data, port=6793, host="default")
 
 
 accounting.push()

@@ -5,12 +5,12 @@ class ConnectorType(ABC):
         self._payload = payload
 
     @abstractmethod
-    def transform(self, payload):
+    def transform(self):
         pass
 
     def push(self):
         print("pusing document to accounting software... ")
-        transformed_payload = self.transform(self._payload)
+        transformed_payload = self.transform()
         self.send(transformed_payload)
 
     @abstractmethod

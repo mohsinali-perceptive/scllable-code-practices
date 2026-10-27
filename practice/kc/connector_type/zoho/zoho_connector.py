@@ -6,8 +6,8 @@ class ZohoConnector(ConnectorType):
         super().__init__(payload)
         self._api_key = api_key
 
-    def transform(self, payload):
-        return transorm_json_to_zoho(self, payload=payload)
+    def transform(self):
+        return transorm_json_to_zoho(self, payload=self._payload)
 
     def send(self, payload):
         print(f"pushing into zoho with api_key {self._api_key}")

@@ -7,8 +7,8 @@ class TallyConnector(ConnectorType):
         self._port = port
         self._host = host
 
-    def transform(self, payload):
-        return transform_to_xml(payload)
+    def transform(self):
+        return transform_to_xml(self._payload)
 
     def send(self, payload):
         print(f"pusing to tally on {self._port}")
